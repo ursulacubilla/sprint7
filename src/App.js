@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputsCheckbox } from './Inputs';
-import { Panel } from "./styled";
+import { Panel } from "./Styled";
 import InputPanel from "./InputPanel";
 
 
@@ -55,8 +55,8 @@ function App() {
 
             {count[0] === true && id === 1 && <Panel isActive={count[0] === true}>
             <InputPanel onComenzar={(textOne, textTwo) => {
-             const perro = (textOne * textTwo) * 30;
-             setSuma(perro);
+             const multText = (textOne * textTwo) * 30;
+             setSuma(multText);
            }} />
       
             </Panel>}
@@ -65,8 +65,6 @@ function App() {
         );
       })}
       <p>Precio: {total + suma} €</p>
-
-    
 
     </div>
   );

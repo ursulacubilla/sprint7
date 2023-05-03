@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
+import ButtonPanel from "./ButtonPanel";
+import { Label } from './Styled';
 
 
 function InputPanel(props) {
@@ -6,13 +8,13 @@ function InputPanel(props) {
     const [textTwo, setTextTwo] = useState(0);
 
     function handleChangeTextOne(e) {
-        setTextOne(e.target.value);
+        setTextOne(Number(e.target.value));
     };
-    
+
     function handleChangeTextTwo(event) {
-        setTextTwo(event.target.value);
+        setTextTwo(Number(event.target.value));
     };
-    
+
     function onComenzarPropsOne(e) {
         props.onComenzar(e.target.value, textTwo);
         handleChangeTextOne(e);
@@ -23,31 +25,54 @@ function InputPanel(props) {
         handleChangeTextTwo(event);
     };
 
+    function onSumar() {
+        props.onComenzar(textOne + 1, textTwo);
+        setTextOne(textOne + 1);
+    };
+
+    function onRestar() {
+        props.onComenzar(textOne - 1, textTwo)
+        setTextOne(textOne - 1);
+    };
+
+    function onSumarTwo() {
+        props.onComenzar(textTwo + 1, textOne)
+        setTextTwo(textTwo + 1);
+    };
+
+    function onRestarTwo() {
+        props.onComenzar(textTwo - 1, textOne)
+        setTextTwo(textTwo - 1);
+    };
+
+
     return (
-        <div>
-            <label className="input-panel-check">
+        <Fragment>
+            <Label >
                 Número de páginas:
-                <input
+
+                <ButtonPanel onProps={onComenzarPropsOne}
                     value={textOne}
-                    id="input-panel-one"
-                    type="text"
-                    onChange={onComenzarPropsOne}
-                />
-            </label>
+                    onSumar={onSumar}
+                    onRestar={onRestar} 
+                    />
+
+            </Label>
 
             <hr />
 
-            <label className="input-panel-check">
+            <Label>
                 Número de idiomas:
-            </label>
-            <input
-                value={textTwo}
-                id="input-panel-two"
-                type="text"
-                onChange={onComenzarPropsTwo}
-            />
 
-        </div>
+            <ButtonPanel onProps={onComenzarPropsTwo}
+                value={textTwo}
+                onSumar={onSumarTwo}
+                onRestar={onRestarTwo} 
+                />
+          
+            </Label>
+
+        </Fragment>
     );
 };
 
