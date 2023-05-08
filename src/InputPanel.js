@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import ButtonPanel from "./ButtonPanel";
 import { Label } from './Styled';
 
@@ -7,12 +7,22 @@ function InputPanel(props) {
     const [textOne, setTextOne] = useState(0);
     const [textTwo, setTextTwo] = useState(0);
 
+    useEffect(() => {
+        const localTextOne = Number(localStorage.getItem('textOne')) || 0;
+        const localTextTwo = Number(localStorage.getItem('textTwo')) || 0;
+        props.onComenzar(localTextOne, localTextTwo);
+        setTextOne(localTextOne);
+        setTextTwo(localTextTwo);
+    }, []);
+
     function handleChangeTextOne(e) {
         setTextOne(Number(e.target.value));
+        localStorage.setItem('textOne', Number(e.target.value));
     };
 
     function handleChangeTextTwo(event) {
         setTextTwo(Number(event.target.value));
+        localStorage.setItem('textTwo', Number(event.target.value));
     };
 
     function onComenzarPropsOne(e) {
@@ -28,21 +38,25 @@ function InputPanel(props) {
     function onSumar() {
         props.onComenzar(textOne + 1, textTwo);
         setTextOne(textOne + 1);
+        localStorage.setItem('textOne', textOne + 1);
     };
 
     function onRestar() {
         props.onComenzar(textOne - 1, textTwo)
         setTextOne(textOne - 1);
+        localStorage.setItem('textOne', textOne - 1);
     };
 
     function onSumarTwo() {
         props.onComenzar(textTwo + 1, textOne)
         setTextTwo(textTwo + 1);
+        localStorage.setItem('textTwo', textTwo + 1);
     };
 
     function onRestarTwo() {
         props.onComenzar(textTwo - 1, textOne)
         setTextTwo(textTwo - 1);
+        localStorage.setItem('textTwo', textTwo - 1);
     };
 
 
@@ -54,8 +68,8 @@ function InputPanel(props) {
                 <ButtonPanel onProps={onComenzarPropsOne}
                     value={textOne}
                     onSumar={onSumar}
-                    onRestar={onRestar} 
-                    />
+                    onRestar={onRestar}
+                />
 
             </Label>
 
@@ -64,12 +78,12 @@ function InputPanel(props) {
             <Label>
                 Número de idiomas:
 
-            <ButtonPanel onProps={onComenzarPropsTwo}
-                value={textTwo}
-                onSumar={onSumarTwo}
-                onRestar={onRestarTwo} 
+                <ButtonPanel onProps={onComenzarPropsTwo}
+                    value={textTwo}
+                    onSumar={onSumarTwo}
+                    onRestar={onRestarTwo}
                 />
-          
+
             </Label>
 
         </Fragment>
