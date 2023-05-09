@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { InputsCheckbox } from './Inputs';
-import { Panel } from "./Styled";
-import InputPanel from "./InputPanel";
+import { InputsCheckbox } from './inputs';
+import { Panel } from "./styled";
+import InputPanel from "./input-panel";
 
 
 

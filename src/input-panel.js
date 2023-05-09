@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import ButtonPanel from "./ButtonPanel";
-import { Label } from './Styled';
+import ButtonPanel from "./button-panel";
+import { Label } from './styled';
 
 
 function InputPanel(props) {

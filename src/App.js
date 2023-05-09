@@ -1,8 +1,8 @@
 import React from "react";
-import Application from "./Application";
-import Welcome from "./Welcome";
+import Application from "./application";
+import Welcome from "./welcome";
 import { Route, Routes } from "react-router-dom";
-import Links from "./Links";
+import Links from "./links";
 
 
 function App() {

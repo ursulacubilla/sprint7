@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Button, Input } from "./Styled";
+import { Button, Input } from "./styled";
 
 function ButtonPanel(props) {
 
